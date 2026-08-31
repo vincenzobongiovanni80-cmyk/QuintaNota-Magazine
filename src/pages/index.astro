@@ -1,0 +1,274 @@
+---
+import Base from '../layouts/Base.astro';
+
+const TEL = "011 234 5678";
+const TEL_HREF = "tel:+390112345678";
+const CELL = "333 123 4567";
+const WA_HREF = "https://wa.me/393331234567?text=Buongiorno%2C%20vorrei%20informazioni%20sui%20vostri%20prodotti%20e%20servizi.";
+const EMAIL = "sanitariaortopedia.zanghi@gmail.com";
+const INDIRIZZO = "Via Cherubini 22, 10154 Torino (TO)";
+const MAPS_LINK = "https://www.google.com/maps/search/?api=1&query=Via+Cherubini+22,+10154+Torino";
+const MAPS_EMBED = "https://www.google.com/maps?q=Via%20Cherubini%2022%2C%2010154%20Torino&output=embed";
+
+const prodotti = [
+  { t: "Busti e Corsetti", d: "Busti ortopedici e corsetteria su misura e prêt-à-porter per la colonna vertebrale.", i: "M12 3c-2 4-2 8 0 12s2 8 0 12M8 7h-2M8 12H5M8 17h-2M16 7h2M16 12h3M16 17h2" },
+  { t: "Tutori e Ortesi", d: "Tutori per ginocchio, caviglia, polso, gomito e spalla. Ortesi su prescrizione.", i: "M7 4h10v6a5 5 0 0 1-10 0V4zM9 14v6M15 14v6M7 20h4M13 20h4" },
+  { t: "Plantari e Calzature", d: "Plantari su misura con esame del passo e calzature ortopediche e comfort.", i: "M3 16c4 1 7-1 9-4l3 4h6v3H3v-3z" },
+  { t: "Prodotti per Incontinenza", d: "Assorbenti, pannoloni e ausili per l'incontinenza, con massima discrezione.", i: "M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z" },
+  { t: "Fasce, Guaine e Cinture", d: "Fasce elastiche, guaine contenitive e cinture lombari per ogni esigenza.", i: "M4 9h16v6H4zM4 12h16M8 9v6M16 9v6" },
+  { t: "Linea Bambino", d: "Articoli ortopedici e sanitari dedicati ai più piccoli: sicuri e certificati.", i: "M12 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 22v-4a6 6 0 0 1 12 0v4" },
+  { t: "Elastocompressione", d: "Calze elastiche a compressione graduata, collant e gambaletti terapeutici.", i: "M9 3h6v9l-2 9H8l1-9V3z" },
+  { t: "Elettromedicali", d: "Apparecchi elettromedicali: magnetoterapia, elettrostimolatori, aerosol.", i: "M13 2L5 13h5l-1 9 8-11h-5l1-9z" },
+  { t: "Estetica, Sport e Benessere", d: "Prodotti per il benessere quotidiano, il recupero sportivo e la cura del corpo.", i: "M12 21c-5-4-8-7-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 4-3 7-8 11z" },
+  { t: "Calzature Ortopediche", d: "Scarpe ortopediche e predisposte per plantare, per uomo, donna e bambino.", i: "M4 15l4-6 4 3 8 1v4H4v-2z" },
+  { t: "Saturimetri (Pulsossimetri)", d: "Pulsossimetri da dito e strumenti di misurazione per l'automonitoraggio.", i: "M8 4h8v8a4 4 0 0 1-8 0V4zM10 20h4M12 16v4" },
+  { t: "Tape Kinesiologico", d: "Bende elastiche e tape kinesiologico per sportivi e riabilitazione.", i: "M5 5h14v4H5zM5 11h9v4H5zM5 17h6v2H5z" },
+  { t: "Poltrone Relax", d: "Poltrone relax e alzapersona elettriche, anche in pronta consegna.", i: "M6 11V7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v4M4 13a2 2 0 0 1 4 0v3h8v-3a2 2 0 0 1 4 0v5H4v-5zM7 21v-3M17 21v-3" },
+  { t: "Letti Elettrici", d: "Letti elettrici degenza e ausili per la camera, anche a noleggio.", i: "M3 18v-6M3 15h18v3M21 18v-4M6 12V9h5v3M3 12h18" },
+  { t: "Colonna Vertebrale e Tronco", d: "Supporti e ausili per cervicale, schiena e postura del tronco.", i: "M12 3v18M12 5c-2 0-3 1-3 2s1 2 3 2 3 1 3 2-1 2-3 2M12 13c-2 0-3 1-3 2s1 2 3 2 3 1 3 2-1 2-3 2" },
+  { t: "Ausili e Noleggio", d: "Carrozzine, deambulatori, stampelle e ausili per il bagno. Vendita e noleggio.", i: "M8 4h3l2 8h5M10 16a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM18 16a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" },
+];
+---
+<Base>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#top" aria-label="Torna all'inizio">
+        <img src="/logo.png" alt="Sanitaria Ortopedia di Elisabetta Zanghi" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#asl-inail">Pratiche ASL e INAIL</a></li>
+        <li><a href="#prodotti">Prodotti</a></li>
+        <li><a href="#chi-siamo">Chi Siamo</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a class="btn btn-outline" href={TEL_HREF}>{TEL}</a>
+        <a class="btn btn-wa" href={WA_HREF} target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <button class="menu-toggle" aria-label="Apri menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <img class="logo-h" src="/logo-white.png" alt="Sanitaria Ortopedia di Elisabetta Zanghi — Busti, Noleggi, Ausili, Plantari, Elettromedicali" />
+      <h1>Il punto di riferimento per la tua <em>salute e il tuo benessere</em> a Torino</h1>
+      <p>Busti, tutori, plantari, ausili ed elettromedicali. Ti affianchiamo anche nelle pratiche <strong>ASL e INAIL</strong>: dalla prescrizione alla consegna, ci pensiamo noi.</p>
+      <div class="hero-actions">
+        <a class="btn btn-wa" href={WA_HREF} target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.3.2.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3z"/></svg>
+          Scrivici su WhatsApp
+        </a>
+        <a class="btn btn-outline" style="border-color:#fff;color:#fff" href={TEL_HREF}>Chiama ora: {TEL}</a>
+      </div>
+      <div class="hero-badges">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="#E8CDBB" stroke-width="1.8"><path d="M9 12l2 2 4-5M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/></svg> Convenzione ASL e INAIL</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="#E8CDBB" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Consulenza personalizzata</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="#E8CDBB" stroke-width="1.8"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg> {INDIRIZZO}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST STRIP ===== -->
+  <div class="trust">
+    <div class="wrap">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="#A08070" stroke-width="1.8"><path d="M9 12l2 2 4-5M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/></svg> Pratiche ASL e INAIL gestite in sede</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="#A08070" stroke-width="1.8"><path d="M12 3v18M12 5c-2 0-3 1-3 2s1 2 3 2 3 1 3 2-1 2-3 2M12 13c-2 0-3 1-3 2s1 2 3 2 3 1 3 2-1 2-3 2"/></svg> Busti e plantari su misura</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="#A08070" stroke-width="1.8"><path d="M8 4h3l2 8h5M10 16a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM18 16a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg> Noleggio ausili e letti</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="#A08070" stroke-width="1.8"><path d="M12 21c-5-4-8-7-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 4-3 7-8 11z"/></svg> Assistenza e cortesia di famiglia</span>
+    </div>
+  </div>
+
+  <!-- ===== ASL / INAIL ===== -->
+  <section class="asl" id="asl-inail">
+    <div class="wrap">
+      <div class="asl-grid">
+        <div>
+          <span class="eyebrow">Servizio in evidenza</span>
+          <h2>Pratiche ASL e INAIL</h2>
+          <p class="lead">Presso la nostra ortopedia potrete richiedere la fornitura di ausili, protesi e articoli sanitari attraverso le agevolazioni offerte dal Sistema Sanitario Nazionale.</p>
+          <p style="margin-top:16px;color:var(--muted)">È possibile richiedere la fornitura dei nostri prodotti <strong>in convenzione ASL o INAIL</strong> seguendo il classico iter burocratico. Non sai da dove partire? <strong>Ti accompagniamo noi, passo dopo passo.</strong></p>
+          <div class="note">
+            Porta con te la <strong>ricetta del medico specialista</strong> e il <strong>codice fiscale</strong>: al resto pensiamo noi, dalla verifica della documentazione alla consegna dell'ausilio.
+          </div>
+          <div class="hero-actions" style="margin-top:28px">
+            <a class="btn btn-primary" href={WA_HREF} target="_blank" rel="noopener">Chiedi info sulla tua pratica</a>
+          </div>
+        </div>
+        <div class="asl-card">
+          <h3 style="margin-bottom:14px">Come funziona, in 5 passi</h3>
+          <ol class="steps">
+            <li><strong>Visita e prescrizione</strong><p>Il medico specialista (ASL o INAIL) rilascia la prescrizione per l'ausilio o la protesi necessaria.</p></li>
+            <li><strong>Vieni in negozio</strong><p>Portaci la prescrizione: verifichiamo subito la documentazione e ti indichiamo i prodotti previsti dal nomenclatore tariffario.</p></li>
+            <li><strong>Presentiamo la pratica</strong><p>Ci occupiamo noi dell'inoltro e del rapporto con l'ente: tu non devi fare la fila né occuparti della burocrazia.</p></li>
+            <li><strong>Autorizzazione</strong><p>L'ASL o l'INAIL autorizzano la fornitura. Ti avvisiamo noi appena la pratica è approvata.</p></li>
+            <li><strong>Consegna e collaudo</strong><p>Ritiri il prodotto in negozio: lo proviamo insieme e lo regoliamo su misura per te.</p></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODOTTI ===== -->
+  <section id="prodotti">
+    <div class="wrap">
+      <span class="eyebrow">Il nostro assortimento</span>
+      <h2>Prodotti e Ausili</h2>
+      <p class="lead">Un assortimento completo per l'ortopedia, la riabilitazione e il benessere di tutta la famiglia. Non trovi ciò che cerchi? Chiedici: lo ordiniamo per te.</p>
+      <div class="prod-grid">
+        {prodotti.map(p => (
+          <div class="prod-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#205060" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d={p.i}/></svg>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHI SIAMO ===== -->
+  <section class="about" id="chi-siamo">
+    <div class="wrap">
+      <div class="about-grid">
+        <div>
+          <img src="/chi-siamo.jpg" alt="Consulenza personalizzata in negozio: prova di un tutore" loading="lazy" />
+        </div>
+        <div>
+          <span class="eyebrow">Chi siamo</span>
+          <h2>Una sanitaria di fiducia, dove trovi ascolto e competenza</h2>
+          <p class="lead">Da noi non sei un numero: ogni persona viene accolta, ascoltata e guidata verso la soluzione giusta per la propria esigenza, con la cura di sempre.</p>
+          <span class="script">di Elisabetta Zanghi</span>
+          <ul class="check-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#205060" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg> Consulenza gratuita per la scelta di tutori, busti e ausili</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#205060" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg> Rilevazione misure in sede per busti, calze e plantari</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#205060" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg> Gestione completa delle pratiche ASL e INAIL</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#205060" stroke-width="2"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg> Noleggio di carrozzine, letti e deambulatori</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTATTI ===== -->
+  <section id="contatti">
+    <div class="wrap">
+      <span class="eyebrow">Vieni a trovarci</span>
+      <h2>Contatti e Dove Siamo</h2>
+      <p class="lead">Siamo in Via Cherubini 22 a Torino. Chiamaci, scrivici su WhatsApp o compila il modulo: ti rispondiamo in giornata.</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <a class="info-card" href={MAPS_LINK} target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A08070" stroke-width="1.8"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+            <div><strong>Indirizzo</strong><span>{INDIRIZZO}</span><small>Apri in Google Maps</small></div>
+          </a>
+          <a class="info-card" href={TEL_HREF}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A08070" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+            <div><strong>Telefono</strong><span>{TEL}</span><small>Anche per urgenze e disponibilità prodotti</small></div>
+          </a>
+          <a class="info-card" href={WA_HREF} target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="#1FAF54"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.3.2.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3z"/></svg>
+            <div><strong>WhatsApp</strong><span>{CELL}</span><small>Risposta rapida, anche con foto del prodotto</small></div>
+          </a>
+          <a class="info-card" href={`mailto:${EMAIL}`}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A08070" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <div><strong>Email</strong><span style="word-break:break-all">{EMAIL}</span><small>Per preventivi e documenti</small></div>
+          </a>
+          <div class="info-card" style="cursor:default">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A08070" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div><strong>Orari di apertura</strong><span>Lun – Ven: 9:00–13:00 / 15:30–19:30</span><small>Sabato: 9:00–13:00 · Domenica chiuso</small></div>
+          </div>
+          <iframe class="map-embed" src={MAPS_EMBED} loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mappa: Via Cherubini 22, Torino"></iframe>
+        </div>
+
+        <form class="quote" action="https://formspree.io/f/TUO-ID-FORMSPREE" method="POST">
+          <h3>Richiedi informazioni</h3>
+          <p style="font-size:15px;color:var(--muted)">Compila il modulo: ti ricontattiamo al più presto. Per urgenze usa WhatsApp o il telefono.</p>
+          <div class="field">
+            <label for="nome">Nome e Cognome *</label>
+            <input id="nome" name="nome" type="text" required autocomplete="name" placeholder="Il tuo nome" />
+          </div>
+          <div class="field">
+            <label for="telefono">Telefono *</label>
+            <input id="telefono" name="telefono" type="tel" required autocomplete="tel" placeholder="Es. 333 1234567" />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="la.tua@email.it" />
+          </div>
+          <div class="field">
+            <label for="argomento">Di cosa hai bisogno?</label>
+            <select id="argomento" name="argomento">
+              <option>Pratiche ASL / INAIL</option>
+              <option>Busti e corsetti</option>
+              <option>Tutori e ortesi</option>
+              <option>Plantari e calzature</option>
+              <option>Noleggio ausili / letti</option>
+              <option>Elettromedicali</option>
+              <option>Altro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="messaggio">Messaggio *</label>
+            <textarea id="messaggio" name="messaggio" rows="4" required placeholder="Scrivici la tua richiesta..."></textarea>
+          </div>
+          <label class="privacy">
+            <input type="checkbox" required />
+            <span>Ho letto l'informativa privacy e acconsento al trattamento dei miei dati per essere ricontattato. *</span>
+          </label>
+          <div class="form-note"></div>
+          <button class="btn btn-primary" type="submit" style="justify-content:center">Invia richiesta</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BAND ===== -->
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Hai una prescrizione o un dubbio su un ausilio?</h2>
+      <p>Passa in negozio o scrivici su WhatsApp: ti aiutiamo a capire cosa serve e se puoi averlo in convenzione ASL o INAIL.</p>
+      <div class="hero-actions">
+        <a class="btn btn-wa" href={WA_HREF} target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+        <a class="btn btn-outline" style="border-color:#fff;color:#fff" href={TEL_HREF}>Chiama: {TEL}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <img src="/logo-white.png" alt="Sanitaria Ortopedia di Elisabetta Zanghi" />
+          <p>Busti · Noleggi · Ausili · Plantari · Elettromedicali<br />{INDIRIZZO}</p>
+        </div>
+        <div>
+          <p><strong style="color:#fff">Contatti</strong><br />
+          Tel: <a href={TEL_HREF}>{TEL}</a><br />
+          WhatsApp: <a href={WA_HREF} target="_blank" rel="noopener">{CELL}</a><br />
+          Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+        </div>
+        <div>
+          <p><strong style="color:#fff">Orari</strong><br />
+          Lun – Ven: 9:00–13:00 / 15:30–19:30<br />
+          Sabato: 9:00–13:00<br />
+          Domenica: chiuso</p>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Sanitaria Ortopedia di Elisabetta Zanghi · P.IVA 01234567890</span>
+        <span><a href="#">Privacy Policy</a> · <a href="#">Cookie Policy</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating button -->
+  <a class="wa-float" href={WA_HREF} target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.3.2.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3z"/></svg>
+  </a>
+</Base>
