@@ -278,21 +278,30 @@ const {
     // Reveal on scroll
     const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
     document.querySelectorAll('.rv').forEach(el => io.observe(el));
-    // Form handling
-    const form = document.querySelector('form.quote');
+    // Form handling (Web3Forms)
+    const form = document.getElementById('form-contatti');
     form?.addEventListener('submit', async (e) => {
-      const action = form.getAttribute('action') || '';
-      const n = document.querySelector('.form-note');
       e.preventDefault();
-      if (!action.includes('formspree.io/f/') || action.includes('TUO-ID')) {
-        n.style.display = 'block';
-        n.textContent = 'Il modulo sarà attivo a breve. Nel frattempo scrivici su WhatsApp o chiamaci: ti rispondiamo subito!';
-      } else {
-        const res = await fetch(action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-        n.style.display = 'block';
-        if (res.ok) { n.textContent = 'Richiesta inviata! Ti ricontatteremo al più presto. Grazie.'; form.reset(); }
-        else { n.textContent = 'Qualcosa non ha funzionato. Riprova o scrivici su WhatsApp.'; }
+      const n = form.querySelector('.form-note');
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.style.opacity = '.6';
+      n.style.display = 'block';
+      n.textContent = 'Invio in corso...';
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        const data = await res.json();
+        if (data.success) {
+          n.textContent = 'Richiesta inviata! Ti ricontatteremo al più presto. Grazie.';
+          form.reset();
+        } else {
+          n.textContent = 'Qualcosa non ha funzionato. Riprova o scrivici su WhatsApp.';
+        }
+      } catch {
+        n.textContent = 'Errore di connessione. Riprova o scrivici su WhatsApp.';
       }
+      btn.disabled = false;
+      btn.style.opacity = '1';
       n.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   </script>
