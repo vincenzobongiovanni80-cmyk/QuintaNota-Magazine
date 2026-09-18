@@ -224,7 +224,11 @@ const marquee = ["Pratiche ASL e INAIL", "Busti su misura", "Noleggio ausili", "
           </div>
         </div>
 
-        <form class="quote rv rv-d1" action="https://formspree.io/f/TUO-ID-FORMSPREE" method="POST">
+        <form class="quote rv rv-d1" id="form-contatti">
+          <input type="hidden" name="access_key" value="9c592803-ce9b-4561-a48c-ef0745fed702" />
+          <input type="hidden" name="subject" value="Nuova richiesta dal sito ortopediazanghi" />
+          <input type="hidden" name="from_name" value="Sito Sanitaria Ortopedia Zanghi" />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
           <h3>Richiedi informazioni</h3>
           <p>Ti ricontattiamo al più presto. Per urgenze usa WhatsApp o il telefono.</p>
           <div class="f-row">
@@ -238,24 +242,12 @@ const marquee = ["Pratiche ASL e INAIL", "Busti su misura", "Noleggio ausili", "
             </div>
           </div>
           <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" placeholder="la.tua@email.it" />
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="la.tua@email.it" />
           </div>
           <div class="field">
-            <label for="argomento">Di cosa hai bisogno?</label>
-            <select id="argomento" name="argomento">
-              <option>Pratiche ASL / INAIL</option>
-              <option>Busti e corsetti</option>
-              <option>Tutori e ortesi</option>
-              <option>Plantari e calzature</option>
-              <option>Noleggio ausili / letti</option>
-              <option>Elettromedicali</option>
-              <option>Altro</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="messaggio">Messaggio *</label>
-            <textarea id="messaggio" name="messaggio" rows="4" required placeholder="Scrivici la tua richiesta..."></textarea>
+            <label for="richiesta">La tua richiesta *</label>
+            <textarea id="richiesta" name="richiesta" rows="4" required placeholder="Scrivici cosa ti serve: un prodotto, un noleggio, una pratica ASL/INAIL..."></textarea>
           </div>
           <label class="privacy">
             <input type="checkbox" required />
