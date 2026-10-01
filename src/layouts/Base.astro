@@ -110,21 +110,23 @@ const {
     .menu-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 6px; }
     .menu-toggle svg { width: 28px; height: 28px; stroke: var(--cream); }
 
-    /* ---------- Promo evento (temporanea) ---------- */
-    .promo { background: var(--bg); padding: 118px 20px 0; }
-    .promo-card { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; gap: 18px; background: rgba(244,238,228,.97); color: var(--bg-deep); border-radius: 16px; padding: 16px 22px; box-shadow: 0 24px 60px rgba(0,0,0,.4); animation: fadeUp 1s var(--ease) .1s both; }
-    .promo-badge { flex: none; background: var(--bg-deep); color: var(--cream); font-weight: 800; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; padding: 10px 13px; border-radius: 10px; text-align: center; line-height: 1.25; }
+    /* ---------- Promo evento in hero (temporanea) ---------- */
+    .promo-hero { position: absolute; top: 112px; left: 50%; transform: translateX(-50%); z-index: 3; width: min(1080px, calc(100% - 40px)); display: flex; align-items: center; gap: 20px; background: rgba(244,238,228,.98); color: var(--bg-deep); border-radius: 18px; padding: 20px 26px; box-shadow: 0 30px 70px rgba(0,0,0,.5), 0 0 0 1px rgba(244,238,228,.25); animation: promoIn 1s var(--ease) .6s both; }
+    @keyframes promoIn { from { opacity: 0; transform: translate(-50%,-18px); } to { opacity: 1; transform: translate(-50%,0); } }
+    .promo-badge { flex: none; background: var(--bg-deep); color: var(--cream); font-weight: 800; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; padding: 12px 15px; border-radius: 12px; text-align: center; line-height: 1.2; }
     .promo-text { flex: 1; min-width: 0; }
-    .promo-text strong { display: block; font-family: var(--serif); font-size: clamp(17px, 2vw, 21px); font-weight: 600; letter-spacing: .01em; }
-    .promo-text span { display: block; font-size: 13.5px; font-weight: 600; color: rgba(10,32,37,.72); margin-top: 3px; }
-    .promo-cta { flex: none; display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #06281A; font-weight: 800; font-size: 14px; text-decoration: none; padding: 12px 20px; border-radius: 999px; transition: all .3s var(--ease); white-space: nowrap; }
+    .promo-text strong { display: block; font-family: var(--serif); font-size: clamp(19px, 2.3vw, 25px); font-weight: 600; letter-spacing: .01em; }
+    .promo-free { font-style: normal; display: inline-block; background: #25D366; color: #06281A; font-size: .6em; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; vertical-align: middle; margin-left: 8px; }
+    .promo-text span { display: block; font-size: 14.5px; font-weight: 600; color: rgba(10,32,37,.72); margin-top: 4px; }
+    .promo-cta { flex: none; display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #06281A; font-weight: 800; font-size: 15px; text-decoration: none; padding: 14px 24px; border-radius: 999px; transition: all .3s var(--ease); white-space: nowrap; }
     .promo-cta:hover { background: #4be184; transform: translateY(-2px); }
-    .promo-cta svg { width: 17px; height: 17px; }
+    .promo-cta svg { width: 18px; height: 18px; }
+    .hero:has(.promo-hero) .hero-inner { padding-top: 215px; }
     @media (max-width: 720px) {
-      .promo { padding-top: 96px; }
-      .promo-card { flex-wrap: wrap; gap: 12px; padding: 16px 18px; }
-      .promo-text { flex-basis: calc(100% - 84px); }
+      .promo-hero { top: 92px; gap: 12px; padding: 16px 18px; flex-wrap: wrap; }
+      .promo-text { flex-basis: calc(100% - 90px); }
       .promo-cta { width: 100%; justify-content: center; }
+      .hero:has(.promo-hero) .hero-inner { padding-top: 290px; }
     }
 
     /* ---------- Hero ---------- */
