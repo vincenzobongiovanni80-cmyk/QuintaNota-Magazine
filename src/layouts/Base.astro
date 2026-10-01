@@ -12,6 +12,15 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href="https://www.ortopediazanghi.it/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Sanitaria Ortopedia di Elisabetta Zanghi" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content="https://www.ortopediazanghi.it/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/vincenzobongiovanni80-cmyk/QuintaNota-Magazine@main/public/hero-new.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,6 +30,7 @@ const {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     "name": "Sanitaria Ortopedia di Elisabetta Zanghi",
+    "url": "https://www.ortopediazanghi.it/",
     "description": "Sanitaria e ortopedia a Torino: busti e corsetti, tutori e ortesi, plantari e calzature ortopediche, ausili per incontinenza, elettromedicali, noleggio, pratiche ASL e INAIL.",
     "address": { "@type": "PostalAddress", "streetAddress": "Via Cherubini 22", "addressLocality": "Torino", "postalCode": "10154", "addressCountry": "IT" },
     "geo": { "@type": "GeoCoordinates", "latitude": 45.0925882, "longitude": 7.6970188 },
@@ -99,6 +109,23 @@ const {
     .nav-cta .btn { padding: 11px 22px; font-size: 13.5px; }
     .menu-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 6px; }
     .menu-toggle svg { width: 28px; height: 28px; stroke: var(--cream); }
+
+    /* ---------- Promo evento (temporanea) ---------- */
+    .promo { background: var(--bg); padding: 118px 20px 0; }
+    .promo-card { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; gap: 18px; background: rgba(244,238,228,.97); color: var(--bg-deep); border-radius: 16px; padding: 16px 22px; box-shadow: 0 24px 60px rgba(0,0,0,.4); animation: fadeUp 1s var(--ease) .1s both; }
+    .promo-badge { flex: none; background: var(--bg-deep); color: var(--cream); font-weight: 800; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; padding: 10px 13px; border-radius: 10px; text-align: center; line-height: 1.25; }
+    .promo-text { flex: 1; min-width: 0; }
+    .promo-text strong { display: block; font-family: var(--serif); font-size: clamp(17px, 2vw, 21px); font-weight: 600; letter-spacing: .01em; }
+    .promo-text span { display: block; font-size: 13.5px; font-weight: 600; color: rgba(10,32,37,.72); margin-top: 3px; }
+    .promo-cta { flex: none; display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #06281A; font-weight: 800; font-size: 14px; text-decoration: none; padding: 12px 20px; border-radius: 999px; transition: all .3s var(--ease); white-space: nowrap; }
+    .promo-cta:hover { background: #4be184; transform: translateY(-2px); }
+    .promo-cta svg { width: 17px; height: 17px; }
+    @media (max-width: 720px) {
+      .promo { padding-top: 96px; }
+      .promo-card { flex-wrap: wrap; gap: 12px; padding: 16px 18px; }
+      .promo-text { flex-basis: calc(100% - 84px); }
+      .promo-cta { width: 100%; justify-content: center; }
+    }
 
     /* ---------- Hero ---------- */
     .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; }
